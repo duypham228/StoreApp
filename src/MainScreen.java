@@ -31,13 +31,13 @@ public class MainScreen extends JFrame {
 
         btnBuy.addActionListener(new ActionListener() { // when controller is simple, we can declare it on the fly
             public void actionPerformed(ActionEvent e) {
-                Application.getInstance().getOrderView().setVisible(true);            }
+                Application.getInstance().getOrderController().setVisible(true);            }
         });
 
 
         btnSell.addActionListener(new ActionListener() { // when controller is simple, we can declare it on the fly
             public void actionPerformed(ActionEvent e) {
-                Application.getInstance().getProductView().setVisible(true);
+                Application.getInstance().getProductController().setVisible(true);
             }
         });
     }

@@ -28,9 +28,9 @@ public class Application {
         this.currentUser = user;
     }
 
-    private ProductView productView = new ProductView();
+    // private ProductView productView = new ProductView();
 
-    private OrderView orderView = new OrderView();
+    // private OrderView orderView = new OrderView();
 
     private MainScreen mainScreen = new MainScreen();
 
@@ -38,21 +38,25 @@ public class Application {
         return mainScreen;
     }
 
-    public ProductView getProductView() {
-        return productView;
-    }
+    // public ProductView getProductView() {
+    //     return productView;
+    // }
 
-    public OrderView getOrderView() {
-        return orderView;
-    }
+    // public OrderView getOrderView() {
+    //     return orderView;
+    // }
 
-    public LoginScreen loginScreen = new LoginScreen();
+    // public LoginScreen loginScreen = new LoginScreen();
 
-    public LoginScreen getLoginScreen() {
-        return loginScreen;
-    }
+    // public LoginScreen getLoginScreen() {
+    //     return loginScreen;
+    // }
 
     public LoginController loginController;
+
+    public LoginController getLoginScreen() {
+        return loginController;
+    }
 
     private ProductController productController;
 
@@ -94,11 +98,11 @@ public class Application {
             System.exit(2);
         }
 
-        productController = new ProductController(productView);
+        productController = new ProductController();
 
-        orderController = new OrderController(orderView);
+        orderController = new OrderController();
 
-        loginController = new LoginController(loginScreen);
+        loginController = new LoginController();
     }
 
 
