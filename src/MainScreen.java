@@ -5,10 +5,16 @@ import java.awt.event.ActionListener;
 
 public class MainScreen extends JFrame {
 
+    private JLabel userLabel = new JLabel();
     private JButton btnBuy = new JButton("Order View");
     private JButton btnSell = new JButton("Product View");
 
+    public JLabel getUserLabel() {
+        return this.userLabel;
+    }
+
     public MainScreen() {
+
         this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(400, 300);
@@ -16,11 +22,13 @@ public class MainScreen extends JFrame {
         btnSell.setPreferredSize(new Dimension(120, 50));
         btnBuy.setPreferredSize(new Dimension(120, 50));
 
+        
 
         JLabel title = new JLabel("Store Management System");
         title.setFont(new Font("Sans Serif", Font.BOLD, 24));
         JPanel panelTitle = new JPanel();
         panelTitle.add(title);
+        panelTitle.add(userLabel);
         this.getContentPane().add(panelTitle);
 
         JPanel panelButton = new JPanel();

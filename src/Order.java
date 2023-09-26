@@ -9,6 +9,8 @@ public class Order {
     private double totalCost;
     private double totalTax;
     private String date;
+    private int addressID;
+    private int cardID;
 
     private List<OrderLine> lines;
 
@@ -62,6 +64,22 @@ public class Order {
 
     public void removeLine(OrderLine line) {
         lines.remove(line);
+    }
+
+    public void setAddressID(int addressID) {
+        this.addressID = addressID;
+    }
+
+    public int getAddressID() {
+        return addressID;
+    }
+
+    public int getCardID() {
+        return cardID;
+    }
+
+    public void setCardID(int cardID) {
+        this.cardID = cardID;
     }
 
     public List<OrderLine> getLines() {

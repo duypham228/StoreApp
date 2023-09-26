@@ -105,12 +105,14 @@ public class DataAdapter {
 
     public boolean saveOrder(Order order) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO Orders VALUES (?, ?, ?, ?, ?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO Orders VALUES (?, ?, ?, ?, ?, ?, ?)");
             statement.setInt(1, order.getOrderID());
             statement.setInt(3, order.getBuyerID());
             statement.setString(2, order.getDate());
             statement.setDouble(4, order.getTotalCost());
             statement.setDouble(5, order.getTotalTax());
+            statement.setInt(6, order.getAddressID());
+            statement.setInt(7, order.getCardID());
 
             statement.execute();    // commit to the database;
             statement.close();
@@ -159,5 +161,169 @@ public class DataAdapter {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public Address loadAddress(int addressID) {
+        try {
+
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Addresses WHERE AddressID = ?");
+            statement.setInt(1, addressID);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                Address address = new Address();
+                address.setAddressID(resultSet.getInt(1));
+                address.setStreet(resultSet.getString(2));
+                address.setCity(resultSet.getString(3));
+                address.setState(resultSet.getString(4));
+                address.setZipcode(resultSet.getString(5));
+                resultSet.close();
+                statement.close();
+
+                return address;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Database access error!");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public boolean saveAddress(Address address) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO Addresses VALUES (?, ?, ?, ?, ?, ?)");
+            statement.setInt(1, address.getAddressID());
+            statement.setString(2, address.getStreet());
+            statement.setString(3, address.getCity());
+            statement.setString(4, address.getState());
+            statement.setString(5, address.getZipcode());
+            statement.setString(6, address.getCountry());
+
+            statement.execute();    // commit to the database;
+            statement.close();
+
+            return true; // save successfully!
+        }
+        catch (SQLException e) {
+            System.out.println("Database access error!");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public int getTotalAddresses() {
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM Addresses");
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                resultSet.close();
+                statement.close();
+                return count;
+            }
+        } catch (SQLException e) {
+            System.out.println("Database access error!");
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public CreditCard loadCard(int cardID) {
+        try {
+
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM CreditCards WHERE CreditCardID = ?");
+            statement.setInt(1, cardID);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                CreditCard card = new CreditCard();
+                card.setCardID(resultSet.getInt(1));
+                card.setHolder(resultSet.getString(2));
+                card.setCardNumber(resultSet.getString(3));
+                card.setExpirationDate(resultSet.getString(4));
+                card.setCVV(resultSet.getString(5));
+                resultSet.close();
+                statement.close();
+
+                return card;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Database access error!");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public int getTotalCards() {
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM CreditCards");
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                resultSet.close();
+                statement.close();
+                return count;
+            }
+        } catch (SQLException e) {
+            System.out.println("Database access error!");
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public boolean saveCard(CreditCard card) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO CreditCards VALUES (?, ?, ?, ?, ?)");
+            statement.setInt(1, card.getCardID());
+            statement.setString(2, card.getHolder());
+            statement.setString(3, card.getCardNumber());
+            statement.setString(4, card.getExpirationDate());
+            statement.setString(5, card.getCVV());
+
+            statement.execute();    // commit to the database;
+            statement.close();
+
+            return true; // save successfully!
+        }
+        catch (SQLException e) {
+            System.out.println("Database access error!");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public int getTotalOrders() {
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM Orders");
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                resultSet.close();
+                statement.close();
+                return count;
+            }
+        } catch (SQLException e) {
+            System.out.println("Database access error!");
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public boolean saveReceipt(int receiptID, String info) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO Receipts VALUES (?, ?)");
+            statement.setInt(1, receiptID);
+            statement.setString(2, info);
+
+            statement.execute();    // commit to the database;
+            statement.close();
+
+            return true; // save successfully!
+        }
+        catch (SQLException e) {
+            System.out.println("Database access error!");
+            e.printStackTrace();
+            return false;
+        }
     }
 }

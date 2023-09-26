@@ -1,5 +1,30 @@
 Duy Pham
-Submission
+
+Submission 2: Coding2
+
+UAT Testing (Login + Making Order): 
+https://youtu.be/Zv93q_lz1DM
+
+Code Change:
+Database:
+- Create tables for Receipts, Addresses, and CreditCards, foreign key AddressID and CreditCardID for Orders table
+
+DataAdapter:
+- Create function to save address and card, as well as load address and card.
+- Create function to get total card and total address to auto assign address ID and card ID
+- Create function to save receipt
+
+Order Controller:
+- Create JButton for add card and add address.
+- Create functions addAddress() and addCard() for those 2 buttons above.
+- Implement makeOrder() function.
+- Implement generateReceipt() function.
+
+Mainscreen:
+- Create a JLabel and pass the current user into the Mainscreen constructor during loginController to display user full name.
+
+
+Submission 1:
 
 Use Case 1:
 https://youtu.be/rVh_m9ZdDT4

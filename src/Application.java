@@ -34,7 +34,8 @@ public class Application {
 
     private MainScreen mainScreen = new MainScreen();
 
-    public MainScreen getMainScreen() {
+    public MainScreen getMainScreen(User user) {
+        mainScreen.getUserLabel().setText("Current user: " + user.getFullName());
         return mainScreen;
     }
 

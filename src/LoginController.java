@@ -91,7 +91,7 @@ public class LoginController extends JFrame implements ActionListener {
             else {
                 Application.getInstance().setCurrentUser(user);
                 this.setVisible(false);
-                Application.getInstance().getMainScreen().setVisible(true);
+                Application.getInstance().getMainScreen(user).setVisible(true);
             }
         }
     }
